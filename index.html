@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Used E-Moto — Buy & Sell Electric Dirt Bikes</title>
+<meta name="description" content="The marketplace for used electric dirt bikes and e-motos. Check your bike's resale value instantly with our free calculator. Sur-ron, Talaria, Stark, and more.">
+<link rel="canonical" href="https://usedemoto.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080b0f;
+    --surface: #0d1117;
+    --card: #131920;
+    --card2: #0f151c;
+    --border: #1e2a35;
+    --border2: #253040;
+    --accent: #00e5ff;
+    --accent-dim: rgba(0,229,255,0.12);
+    --accent-glow: rgba(0,229,255,0.06);
+    --gold: #f5c842;
+    --gold-dim: rgba(245,200,66,0.1);
+    --green: #39d98a;
+    --warn: #ff6b35;
+    --red: #ff4455;
+    --text: #e8edf2;
+    --sub: #7a8fa0;
+    --muted: #4a5a68;
+    --divider: #1a2530;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.018) 1px, transparent 1px);
+    background-size:48px 48px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  body::after {
+    content:'';
+    position:fixed;
+    top:-200px; left:-200px;
+    width:700px; height:700px;
+    background: radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sub);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content:'';
+    display:inline-block;
+    width:28px; height:1px;
+    background:var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 10vw, 96px);
+    letter-spacing: 4px;
+    line-height: 1.0;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-desc {
+    font-size: 16px;
+    color: var(--sub);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--accent), #0099cc);
+    color: #000;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 15px 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,229,255,0.25);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 15px 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  /* ── STATS ROW ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 40px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 60px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    text-align: center;
+    margin: 80px 0 40px;
+    position: relative;
+  }
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--divider);
+  }
+  .section-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 0 20px;
+    position: relative;
+  }
+
+  /* ── CALCULATOR SECTION ── */
+  .calc-header {
+    padding: 0 0 40px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 44px;
+  }
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .header-eyebrow::before {
+    content:'';
+    display:inline-block;
+    width:28px; height:1px;
+    background:var(--accent);
+  }
+  .calc-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 7vw, 68px);
+    letter-spacing: 3px;
+    line-height: 1.0;
+    color: var(--text);
+  }
+  .calc-title span { color: var(--accent); }
+  .calc-desc {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--sub);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  /* ── FORM GRID ── */
+  .form-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 28px 24px;
+    margin-bottom: 16px;
+  }
+  .form-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .form-block-title .dot {
+    width:6px; height:6px;
+    background:var(--accent);
+    border-radius:50%;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .fg { display:flex; flex-direction:column; gap:8px; }
+  .fgrid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .fgrid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+
+  label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sub);
+  }
+
+  select, input[type=number], input[type=text], input[type=email], textarea {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 11px 14px;
+    border-radius: 5px;
+    outline: none;
+    appearance:none;
+    -webkit-appearance:none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width:100%;
+  }
+  select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a5a68'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; }
+  select:focus, input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,229,255,0.08); }
+  select option { background: #131920; }
+  textarea { resize: vertical; min-height: 100px; font-family: 'DM Sans', sans-serif; }
+
+  /* ── CONDITION ── */
+  .cond-row { display:grid; grid-template-columns: repeat(5,1fr); gap:8px; }
+  .cond-btn {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--sub);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing:1px;
+    text-transform: uppercase;
+    padding: 12px 6px 10px;
+    border-radius: 5px;
+    cursor:pointer;
+    text-align:center;
+    line-height:1.35;
+    transition: all 0.15s;
+    user-select:none;
+  }
+  .cond-btn:hover { border-color: var(--border2); color: var(--text); }
+  .cond-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+  .cond-btn .cond-score { display:block; font-size:16px; font-family:'Bebas Neue',sans-serif; letter-spacing:1px; margin-bottom:4px; }
+
+  /* ── UPGRADES ── */
+  .upg-grid { display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+  .upg-item {
+    display:flex; align-items:center; gap:10px;
+    background:var(--card2); border:1px solid var(--border); border-radius:5px;
+    padding:10px 14px; cursor:pointer; transition:all 0.15s;
+    font-size:13px; color:var(--sub); user-select:none;
+  }
+  .upg-item:hover { border-color:var(--border2); color:var(--text); }
+  .upg-item.active { border-color:var(--gold); color:var(--text); background:var(--gold-dim); }
+  .upg-cb {
+    width:15px; height:15px; border:1px solid var(--muted); border-radius:3px;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    transition:all 0.15s; font-size:9px; color:transparent;
+  }
+  .upg-item.active .upg-cb { background:var(--gold); border-color:var(--gold); color:#000; }
+  .upg-val {
+    margin-left:auto; font-family:'DM Mono',monospace; font-size:10px;
+    color:var(--gold); opacity:0; transition:opacity 0.15s; flex-shrink:0;
+  }
+  .upg-item.active .upg-val { opacity:1; }
+
+  /* ── BUTTON ── */
+  .calc-btn {
+    width:100%;
+    background: linear-gradient(135deg, var(--accent), #0099cc);
+    color:#000; border:none;
+    font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:4px;
+    padding:17px; border-radius:6px; cursor:pointer;
+    transition:all 0.2s; margin-top:8px; position:relative; overflow:hidden;
+  }
+  .calc-btn::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent); }
+  .calc-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,229,255,0.25); }
+  .calc-btn:active { transform:translateY(0); }
+
+  /* ── RESULTS ── */
+  #results { display:none; margin-top:48px; }
+  #results.show { display:block; animation:fadeUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  .results-eyebrow {
+    font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:20px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .results-eyebrow::after { content:''; flex:1; height:1px; background:var(--divider); }
+
+  .val-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 32px 36px; margin-bottom: 16px; position:relative; overflow:hidden;
+  }
+  .val-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, var(--accent), transparent 60%); }
+  .val-top { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .val-eyebrow { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--sub); margin-bottom:8px; }
+  .val-price { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,9vw,88px); letter-spacing:2px; color:var(--accent); line-height:1; text-shadow: 0 0 40px rgba(0,229,255,0.3); }
+  .val-range { margin-top:6px; font-family:'DM Mono',monospace; font-size:12px; color:var(--muted); }
+  .val-range span { color:var(--sub); }
+  .val-right { display:flex; flex-direction:column; gap:12px; align-items:flex-end; }
+  .val-badge { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:1px; text-transform:uppercase; padding:6px 12px; border-radius:3px; white-space:nowrap; }
+  .badge-hot { background:rgba(255,107,53,0.15); color:var(--warn); border:1px solid rgba(255,107,53,0.3); }
+  .badge-stable { background:rgba(57,217,138,0.1); color:var(--green); border:1px solid rgba(57,217,138,0.25); }
+  .badge-soft { background:rgba(255,255,255,0.04); color:var(--muted); border:1px solid var(--border); }
+  .badge-disc { background:rgba(255,68,85,0.12); color:var(--red); border:1px solid rgba(255,68,85,0.3); }
+
+  .conf-row { display:flex; align-items:center; gap:14px; margin-top:22px; padding-top:22px; border-top:1px solid var(--divider); }
+  .conf-lbl { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); flex-shrink:0; }
+  .conf-track { flex:1; height:3px; background:var(--divider); border-radius:2px; overflow:hidden; }
+  .conf-fill { height:100%; background:var(--accent); border-radius:2px; width:0; transition:width 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .conf-pct { font-family:'DM Mono',monospace; font-size:12px; color:var(--accent); flex-shrink:0; }
+
+  .breakdown-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow:hidden; margin-bottom: 16px; }
+  .bk-row { display:flex; justify-content:space-between; align-items:center; padding:13px 22px; border-bottom:1px solid var(--divider); font-size:13px; gap:12px; }
+  .bk-row:last-child { border-bottom:none; }
+  .bk-label { color:var(--sub); flex:1; }
+  .bk-val { font-family:'DM Mono',monospace; font-size:12px; flex-shrink:0; }
+  .bk-val.neu { color:var(--text); }
+  .bk-val.pos { color:var(--green); }
+  .bk-val.neg { color:var(--warn); }
+  .bk-val.tot { color:var(--accent); font-size:15px; font-weight:500; }
+
+  .tips-card {
+    background: rgba(0,229,255,0.04); border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 8px; padding: 20px 24px; font-size:13px; color:var(--sub); line-height:1.65;
+  }
+  .tips-card strong { color:var(--accent); }
+
+  /* ── CONTACT SECTION ── */
+  .contact-section { margin-top: 80px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .form-success.show { display: block; animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+  .form-success .check {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .form-success h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .form-success p {
+    color: var(--sub);
+    font-size: 14px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top:56px;
+    padding-top:24px;
+    border-top:1px solid var(--divider);
+    font-family:'DM Mono',monospace;
+    font-size:10px;
+    color:var(--muted);
+    letter-spacing:0.3px;
+    line-height:1.8;
+    text-align: center;
+  }
+  footer a { color: var(--sub); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media(max-width:620px){
+    .fgrid2,.fgrid3{grid-template-columns:1fr;}
+    .cond-row{grid-template-columns:repeat(3,1fr);}
+    .upg-grid{grid-template-columns:1fr;}
+    .val-right{align-items:flex-start;}
+    .form-block{padding:20px 16px;}
+    .stats{grid-template-columns:1fr; gap:24px;}
+    .nav-links{gap:16px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .hero{padding:50px 0 40px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-brand">USED <span>E-MOTO</span></a>
+    <div class="nav-links">
+      <a href="#calculator">Calculator</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Coming Soon</div>
+    <h1>THE MARKETPLACE FOR<br>USED <span>ELECTRIC DIRT BIKES</span></h1>
+    <p class="hero-desc">Buy and sell used e-motos with confidence. Sur-ron, Talaria, Stark, and more &mdash; all in one place. Get your bike's resale value instantly while we build the full marketplace.</p>
+    <div class="hero-cta">
+      <a href="#calculator" class="btn-primary">CHECK YOUR BIKE'S VALUE</a>
+      <a href="#contact" class="btn-secondary">GET NOTIFIED AT LAUNCH</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">14+</div>
+      <div class="stat-label">Brands Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Models in Database</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">FREE</div>
+      <div class="stat-label">Instant Valuations</div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR -->
+  <div id="calculator">
+    <div class="calc-header">
+      <div class="header-eyebrow">Light Electric Motorcycle Market</div>
+      <h2 class="calc-title">USED EMOTO<br><span>VALUE CALCULATOR</span></h2>
+      <p class="calc-desc">Get an estimated private-party resale value for your electric dirt bike or e-moto based on make, model, year, condition, and installed upgrades &mdash; updated with 2025 market data.</p>
+    </div>
+
+    <!-- BLOCK 1: Bike Details -->
+    <div class="form-block">
+      <div class="form-block-title"><span class="dot"></span> Bike Details</div>
+      <div class="fgrid3" style="margin-bottom:16px;">
+        <div class="fg">
+          <label>Make</label>
+          <select id="make" onchange="updateModels()">
+            <option value="">Select make</option>
+            <option value="surron">Sur-ron</option>
+            <option value="talaria">Talaria</option>
+            <option value="eride">E-Ride Pro</option>
+            <option value="altis">Altis</option>
+            <option value="stark">Stark Future</option>
+            <option value="ventus">Ventus</option>
+            <option value="tori">Tori</option>
+            <option value="rawrr">Rawrr</option>
+            <option value="bonnell">Bonnell</option>
+            <option value="rfn">RFN (Apollo)</option>
+            <option value="arctic">Arctic Leopard</option>
+            <option value="electro">Electro &amp; Co</option>
+            <option value="bike79">79 Bike</option>
+            <option value="dust">Dust Moto</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Model</label>
+          <select id="model" onchange="updateYears()">
+            <option value="">&mdash; select make first &mdash;</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Year</label>
+          <select id="year">
+            <option value="">&mdash;</option>
+          </select>
+        </div>
+      </div>
+      <div class="fgrid2">
+        <div class="fg">
+          <label>Approx. Mileage / Hours (optional)</label>
+          <input type="number" id="mileage" placeholder="Miles ridden" min="0" max="20000">
+        </div>
+        <div class="fg">
+          <label>Major Damage / Crash History?</label>
+          <select id="crash">
+            <option value="0">No &mdash; clean history</option>
+            <option value="1">Minor tip-over / cosmetic only</option>
+            <option value="2">Moderate &mdash; repaired damage</option>
+            <option value="3">Major crash &mdash; disclosed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2: Condition -->
+    <div class="form-block">
+      <div class="form-block-title"><span class="dot"></span> Condition Grade</div>
+      <div class="cond-row">
+        <div class="cond-btn" data-val="1.14" onclick="pickCond(this)"><span class="cond-score">10</span>Like New</div>
+        <div class="cond-btn" data-val="1.0"  onclick="pickCond(this)"><span class="cond-score">8</span>Excellent</div>
+        <div class="cond-btn" data-val="0.86" onclick="pickCond(this)"><span class="cond-score">6</span>Good</div>
+        <div class="cond-btn" data-val="0.72" onclick="pickCond(this)"><span class="cond-score">4</span>Fair</div>
+        <div class="cond-btn" data-val="0.52" onclick="pickCond(this)"><span class="cond-score">2</span>Poor</div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3: Upgrades -->
+    <div class="form-block">
+      <div class="form-block-title"><span class="dot"></span> Upgrades &amp; Mods Installed</div>
+      <div class="upg-grid" id="upg-grid"></div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">CALCULATE RESALE VALUE</button>
+
+    <!-- RESULTS -->
+    <div id="results">
+      <div class="results-eyebrow">Valuation Report</div>
+      <div class="val-card">
+        <div class="val-top">
+          <div class="val-left">
+            <div class="val-eyebrow">Estimated Private Party Value</div>
+            <div class="val-price" id="r-price">&mdash;</div>
+            <div class="val-range">Likely range: <span id="r-low">&mdash;</span> &ndash; <span id="r-high">&mdash;</span></div>
+          </div>
+          <div class="val-right" id="r-badges"></div>
+        </div>
+        <div class="conf-row">
+          <div class="conf-lbl">Confidence</div>
+          <div class="conf-track"><div class="conf-fill" id="r-conf-fill"></div></div>
+          <div class="conf-pct" id="r-conf-pct">&mdash;</div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-top:24px;">Price Breakdown</div>
+      <div class="breakdown-card" id="r-breakdown"></div>
+      <div class="tips-card" id="r-tips" style="margin-top:16px;"></div>
+    </div>
+  </div>
+
+  <!-- CONTACT / NOTIFY -->
+  <div class="section-divider"><span>Stay Connected</span></div>
+
+  <section class="contact-section" id="contact">
+    <div class="form-block">
+      <div class="form-block-title"><span class="dot"></span> Get Notified at Launch</div>
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="contact-grid" style="margin-bottom:16px;">
+          <div class="fg">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="fg">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="fg" style="margin-bottom:16px;">
+          <label>What bike do you ride? (optional)</label>
+          <input type="text" name="bike" placeholder="e.g. 2024 Sur-ron Light Bee X">
+        </div>
+        <div class="fg" style="margin-bottom:16px;">
+          <label>Are you looking to buy or sell? (optional)</label>
+          <select name="intent">
+            <option value="">Select one</option>
+            <option value="buy">Looking to buy</option>
+            <option value="sell">Looking to sell</option>
+            <option value="both">Both</option>
+            <option value="curious">Just curious</option>
+          </select>
+        </div>
+        <div class="fg" style="margin-bottom:16px;">
+          <label>Message (optional)</label>
+          <textarea name="message" placeholder="Any questions, feedback, or bikes you'd like to see listed..."></textarea>
+        </div>
+        <button type="submit" class="calc-btn">NOTIFY ME AT LAUNCH</button>
+      </form>
+      <div class="form-success" id="form-success">
+        <div class="check">&#10003;</div>
+        <h3>YOU'RE ON THE LIST</h3>
+        <p>We'll email you when the marketplace goes live.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Used E-Moto. All rights reserved.</p>
+    <p style="margin-top:12px;">Values are estimated from observed private-party listings on Facebook Marketplace, eBay, Craigslist, and community forums. This tool does not constitute a binding appraisal. Actual prices vary by region, demand, and listing quality.</p>
+  </footer>
+
+</div>
+
+<script>
+// ── BIKE DATABASE ──
+const BIKES = {
+  surron: {
+    name:"Sur-ron",
+    models:{
+      "Light Bee X":    {base:3700, msrp:4499, years:[2019,2020,2021,2022,2023,2024,2025], seg:"trail", notes:"Most popular / widest parts support"},
+      "Light Bee S":    {base:3300, msrp:4199, years:[2019,2020,2021,2022,2023,2024], seg:"trail", notes:""},
+      "Ultra Bee":      {base:5400, msrp:7199, years:[2022,2023,2024,2025], seg:"trail", notes:"Mid-size — strong demand"},
+      "Hyper Bee":      {base:6200, msrp:8299, years:[2024,2025], seg:"trail", notes:"Newest model — very low used supply"},
+      "Storm Bee":      {base:6800, msrp:9799, years:[2021,2022,2023,2024,2025], seg:"emoto", notes:"Full-size MX class"},
+    }
+  },
+  talaria: {
+    name:"Talaria",
+    models:{
+      "Sting":          {base:3100, msrp:3999, years:[2020,2021,2022,2023], seg:"trail", notes:""},
+      "Sting R":        {base:3600, msrp:4599, years:[2021,2022,2023,2024], seg:"mx", notes:""},
+      "Sting R MX3":    {base:3900, msrp:4799, years:[2022,2023,2024], seg:"mx", notes:""},
+      "Sting R MX4":    {base:4100, msrp:5199, years:[2023,2024,2025], seg:"mx", notes:"High demand"},
+      "Sting MX5":      {base:4400, msrp:4799, years:[2024,2025], seg:"mx", notes:"Latest gen — limited used supply"},
+      "XXX":            {base:6500, msrp:8499, years:[2023,2024,2025], seg:"emoto", notes:"Full-size MX"},
+    }
+  },
+  eride: {
+    name:"E-Ride Pro",
+    models:{
+      "SS":             {base:3800, msrp:4599, years:[2022,2023,2024], seg:"mx", notes:""},
+      "SS 2.0":         {base:4200, msrp:4999, years:[2023,2024,2025], seg:"mx", notes:""},
+      "SS 3.0":         {base:4500, msrp:4999, years:[2024,2025], seg:"mx", notes:"Updated suspension gen"},
+      "SR":             {base:4900, msrp:5699, years:[2024,2025], seg:"emoto", notes:"25kW flagship"},
+    }
+  },
+  altis: {
+    name:"Altis",
+    models:{
+      "Delta":          {base:2900, msrp:3599, years:[2023,2024,2025], seg:"pit", notes:"Entry pit-bike class"},
+      "Alpha":          {base:3600, msrp:4499, years:[2022,2023,2024], seg:"trail", notes:""},
+      "Sigma":          {base:4800, msrp:5899, years:[2024,2025], seg:"emoto", notes:"22kW — strong reviews"},
+    }
+  },
+  stark: {
+    name:"Stark Future",
+    models:{
+      "Varg":           {base:8200, msrp:11000, years:[2022,2023,2024], seg:"emoto", notes:"FIM championship-winning platform"},
+      "Varg MX":        {base:9000, msrp:11000, years:[2023,2024,2025], seg:"emoto", notes:"MX-spec flagship"},
+      "Varg MX 1.2":    {base:9400, msrp:11500, years:[2025], seg:"emoto", notes:"Latest spec — very few used"},
+    }
+  },
+  ventus: {
+    name:"Ventus",
+    models:{
+      "One (V1)":       {base:4800, msrp:5999, years:[2023,2024], seg:"emoto", notes:"28kW — popular tuner platform"},
+      "One Plus (V1+)": {base:5200, msrp:6399, years:[2025], seg:"emoto", notes:"Upgraded suspension + brakes"},
+    }
+  },
+  tori: {
+    name:"Tori",
+    models:{
+      "Tori T1":        {base:3200, msrp:3999, years:[2023,2024,2025], seg:"trail", notes:"Newer brand — limited resale data"},
+      "Tori T2":        {base:3800, msrp:4699, years:[2024,2025], seg:"trail", notes:""},
+    }
+  },
+  rawrr: {
+    name:"Rawrr",
+    models:{
+      "Mantis":         {base:3600, msrp:4499, years:[2023,2024], seg:"trail", notes:"Reverse system unique feature"},
+      "Mantis X":       {base:3100, msrp:3599, years:[2024,2025], seg:"trail", notes:"Entry tier"},
+      "Mantis X Pro":   {base:3900, msrp:4699, years:[2024,2025], seg:"trail", notes:"15kW upgraded version"},
+    }
+  },
+  bonnell: {
+    name:"Bonnell",
+    models:{
+      "775 MX":         {base:4600, msrp:5495, years:[2024,2025], seg:"mtb-mx", notes:"e-MTB / MX hybrid"},
+      "775 AM":         {base:3500, msrp:4295, years:[2024,2025], seg:"mtb-mx", notes:"All-mountain spec"},
+      "805":            {base:7500, msrp:9000, years:[2025], seg:"emoto", notes:"30kW — just launched late 2025"},
+      "902":            {base:9000, msrp:11000, years:[2025], seg:"emoto", notes:"46kW flagship — very limited used"},
+    }
+  },
+  rfn: {
+    name:"RFN (Apollo)",
+    models:{
+      "Ares":           {base:2900, msrp:3499, years:[2022,2023,2024,2025], seg:"trail", notes:"74V — good range. Needs controls upgrades"},
+      "Ares Rally":     {base:3200, msrp:3899, years:[2023,2024,2025], seg:"trail", notes:"Rally-spec variant"},
+      "Warrior Pro":    {base:2400, msrp:2999, years:[2023,2024,2025], seg:"trail", notes:"Mid-tier"},
+    }
+  },
+  arctic: {
+    name:"Arctic Leopard",
+    models:{
+      "XE Pro":         {base:4200, msrp:5399, years:[2023,2024], seg:"trail", notes:"Best range in class — 35 mi"},
+      "XE Pro S":       {base:4600, msrp:5599, years:[2024,2025], seg:"trail", notes:"Updated chassis — top trail pick 2025"},
+    }
+  },
+  electro: {
+    name:"Electro & Co",
+    models:{
+      "Model E1":       {base:3300, msrp:4199, years:[2023,2024,2025], seg:"trail", notes:"Euro-rooted brand — limited US resale data"},
+      "Model E2":       {base:3900, msrp:4899, years:[2024,2025], seg:"trail", notes:""},
+    }
+  },
+  bike79: {
+    name:"79 Bike",
+    models:{
+      "Falcon":         {base:2900, msrp:3599, years:[2023,2024,2025], seg:"trail", notes:"Lightest in class — 130 lb"},
+      "Falcon Pro":     {base:3300, msrp:3999, years:[2024,2025], seg:"trail", notes:"10kW / 72V 35Ah — same chassis as Ventus One"},
+    }
+  },
+  dust: {
+    name:"Dust Moto",
+    models:{
+      "Hightail":       {base:8500, msrp:10950, years:[2024,2025], seg:"emoto", notes:"Premium US-developed — strong brand story"},
+    }
+  },
+};
+
+const UPGRADES = [
+  {id:"suspension",  label:"Suspension Upgrade (fork/shock)", val:380},
+  {id:"battery",     label:"Battery Upgrade / Spare Pack",    val:520},
+  {id:"controller",  label:"Controller Tune / Upgrade",       val:290},
+  {id:"sprocket",    label:"Sprocket / Chain Drive Kit",      val:90},
+  {id:"tires",       label:"Premium Tires (Kenda / Maxxis)",  val:130},
+  {id:"brakes",      label:"Brake Upgrade (DOT / Formula)",   val:165},
+  {id:"lights",      label:"Lighting / LED Kit",              val:95},
+  {id:"plastics",    label:"Aftermarket Graphics / Plastics", val:185},
+  {id:"bars",        label:"Handlebar / Stem / Controls",     val:120},
+  {id:"protection",  label:"Frame Guards / Skid Plate",       val:80},
+  {id:"wheels",      label:"Upgraded Wheelset",               val:420},
+  {id:"seat",        label:"Custom Seat / Comfort Upgrade",   val:75},
+];
+
+function deprMult(age) {
+  if (age <= 0) return 1.0;
+  const curve = [1.0, 0.89, 0.79, 0.70, 0.63, 0.57];
+  return curve[Math.min(age, 5)];
+}
+function mileAdj(m) {
+  if (!m || m < 50)   return 0;
+  if (m < 200)         return -80;
+  if (m < 500)         return -200;
+  if (m < 1000)        return -400;
+  if (m < 2000)        return -650;
+  return -950;
+}
+function crashAdj(c) {
+  return [0, -200, -600, -1400][parseInt(c)];
+}
+
+let condVal = null;
+let activeUpg = new Set();
+
+function buildUpgrades() {
+  const g = document.getElementById('upg-grid');
+  g.innerHTML = '';
+  UPGRADES.forEach(u => {
+    const d = document.createElement('div');
+    d.className = 'upg-item';
+    d.dataset.id = u.id;
+    d.innerHTML = `<div class="upg-cb">&#10003;</div><span>${u.label}</span><span class="upg-val">+$${u.val}</span>`;
+    d.onclick = () => {
+      d.classList.toggle('active');
+      activeUpg.has(u.id) ? activeUpg.delete(u.id) : activeUpg.add(u.id);
+    };
+    g.appendChild(d);
+  });
+}
+
+function updateModels() {
+  const make = document.getElementById('make').value;
+  const mSel = document.getElementById('model');
+  const ySel = document.getElementById('year');
+  mSel.innerHTML = '<option value="">Select model</option>';
+  ySel.innerHTML = '<option value="">&mdash;</option>';
+  if (!make) return;
+  Object.keys(BIKES[make].models).forEach(m => {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    mSel.appendChild(o);
+  });
+}
+
+function updateYears() {
+  const make = document.getElementById('make').value;
+  const model = document.getElementById('model').value;
+  const ySel = document.getElementById('year');
+  ySel.innerHTML = '<option value="">Select year</option>';
+  if (!make || !model) return;
+  BIKES[make].models[model].years.slice().reverse().forEach(y => {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    ySel.appendChild(o);
+  });
+}
+
+function pickCond(el) {
+  document.querySelectorAll('.cond-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  condVal = parseFloat(el.dataset.val);
+}
+
+function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+function calculate() {
+  const make  = document.getElementById('make').value;
+  const model = document.getElementById('model').value;
+  const year  = parseInt(document.getElementById('year').value);
+  const miles = parseInt(document.getElementById('mileage').value) || 0;
+  const crash = document.getElementById('crash').value;
+
+  if (!make || !model || !year) { alert('Please select make, model, and year.'); return; }
+  if (!condVal) { alert('Please select a condition grade.'); return; }
+
+  const bData = BIKES[make].models[model];
+  const age   = 2025 - year;
+  const dm    = deprMult(age);
+  const base  = bData.base;
+  const afterDepr = base * dm;
+  const afterCond = afterDepr * condVal;
+  const mAdj  = mileAdj(miles);
+  const cAdj  = crashAdj(crash);
+
+  let upgTotal = 0;
+  const upgRows = [];
+  UPGRADES.forEach(u => {
+    if (activeUpg.has(u.id)) {
+      const rec = Math.round(u.val * 0.58);
+      upgTotal += rec;
+      upgRows.push({label: u.label, val: rec});
+    }
+  });
+
+  const final = Math.max(afterCond + mAdj + cAdj + upgTotal, 200);
+  const low   = Math.round(final * 0.87);
+  const high  = Math.round(final * 1.14);
+
+  let conf = 52;
+  if (miles > 0)       conf += 14;
+  if (upgRows.length)  conf += 10;
+  if (crash !== '0')   conf += 5;
+  conf = Math.min(conf, 86);
+
+  const condLabels = {1.14:'Like New', 1.0:'Excellent', 0.86:'Good', 0.72:'Fair', 0.52:'Poor'};
+
+  const rows = [
+    {label:`${year} ${BIKES[make].name} ${model} — base market value`, val:fmt(base), cls:'neu'},
+    {label:`Depreciation (${age} yr${age!==1?'s':''} · ${Math.round(dm*100)}% retained)`, val:fmt(afterDepr-base), cls:(afterDepr-base)>=0?'pos':'neg'},
+    {label:`Condition — ${condLabels[condVal]||''}`, val:fmt(afterCond-afterDepr), cls:(afterCond-afterDepr)>=0?'pos':'neg'},
+  ];
+  if (miles > 0) rows.push({label:`Mileage usage (${miles.toLocaleString()} mi)`, val:fmt(mAdj), cls:mAdj>=0?'pos':'neg'});
+  if (cAdj < 0) rows.push({label:`Crash / damage history`, val:fmt(cAdj), cls:'neg'});
+  upgRows.forEach(u => rows.push({label:`${u.label} (+58% resale recovery)`, val:'+'+fmt(u.val), cls:'pos'}));
+  rows.push({label:'Estimated Private Party Value', val:fmt(final), cls:'tot'});
+
+  document.getElementById('r-breakdown').innerHTML = rows.map(r =>
+    `<div class="bk-row"><span class="bk-label">${r.label}</span><span class="bk-val ${r.cls}">${r.val}</span></div>`
+  ).join('');
+
+  document.getElementById('r-price').textContent = fmt(final);
+  document.getElementById('r-low').textContent   = fmt(low);
+  document.getElementById('r-high').textContent  = fmt(high);
+  document.getElementById('r-conf-fill').style.width = conf + '%';
+  document.getElementById('r-conf-pct').textContent  = conf + '%';
+
+  const seg = bData.seg;
+  const badges = [];
+  if (age <= 1) badges.push({text:'Recent Model — High Demand', cls:'badge-hot'});
+  if (make === 'stark') badges.push({text:'Race-Proven Platform', cls:'badge-hot'});
+  if (make === 'dust') badges.push({text:'Premium US Brand', cls:'badge-stable'});
+  if (make === 'bonnell' && (model==='805'||model==='902')) badges.push({text:'Just Launched — Very Limited Used Supply', cls:'badge-hot'});
+  if (seg === 'emoto') badges.push({text:'Full-Size eMoto Class', cls:'badge-stable'});
+  if (condVal >= 1.0) badges.push({text:'Excellent Condition Premium', cls:'badge-stable'});
+  if (condVal <= 0.72) badges.push({text:'Below-Average Condition', cls:'badge-soft'});
+  if (parseInt(crash) >= 2) badges.push({text:'Damage History — Disclosed', cls:'badge-disc'});
+  if (bData.notes) badges.push({text:bData.notes, cls:'badge-soft'});
+
+  document.getElementById('r-badges').innerHTML = badges.slice(0,3).map(b =>
+    `<span class="val-badge ${b.cls}">${b.text}</span>`
+  ).join('');
+
+  const tips = [];
+  if (condVal >= 1.0) tips.push(`Your <strong>excellent condition</strong> is your biggest asset — mention it first in the listing headline.`);
+  if (upgRows.length > 1) tips.push(`Itemize every upgrade with brand names and receipts. Buyers pay more when they can verify the spec.`);
+  if (make === 'surron' || make === 'talaria') tips.push(`Post in <strong>r/Surron</strong> or <strong>r/Talaria</strong> — community-driven sales move faster than Marketplace.`);
+  if (make === 'stark') tips.push(`Stark buyers are premium — emphasize race-readiness and any service records.`);
+  if (age >= 3) tips.push(`Offer a fresh charge and any remaining battery health documentation to ease buyer hesitation on an older unit.`);
+  if (parseInt(crash) >= 2) tips.push(`Disclosing damage history honestly protects you legally and still allows a clean sale — price it into the ask.`);
+  tips.push(`List 6–9% above your floor to leave room for negotiation without leaving money on the table.`);
+
+  document.getElementById('r-tips').innerHTML = `<strong>Selling tips:</strong> ${tips.join(' ')}`;
+
+  const res = document.getElementById('results');
+  res.classList.add('show');
+  setTimeout(() => res.scrollIntoView({behavior:'smooth', block:'start'}), 80);
+}
+
+// ── CONTACT FORM (Formspree with fallback) ──
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const form = this;
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('show');
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  }).catch(() => {
+    alert('Something went wrong. Please try again.');
+  });
+});
+
+buildUpgrades();
+</script>
+</body>
+</html>
